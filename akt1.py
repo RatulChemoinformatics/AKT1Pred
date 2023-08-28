@@ -33,7 +33,7 @@ st.markdown("""
 This app allows you to predict the bioactivity of any molecule towards inhibiting AKT1.
 
 **Credits**.
-- App built in `Python` + `Streamlit` by [Ratul Bhowmik, Ajay Manaithiya]
+- App built in `Python` + `Streamlit` by [Ratul Bhowmik, Ajay Manaithiya, Dr. Ahmed A. Elhenawy]
 - Descriptor calculated using [PaDEL-Descriptor](http://www.yapcwsoft.com/dd/padeldescriptor/) [[Read the Paper]](https://doi.org/10.1002/jcc.21707).
 ---
 """)
