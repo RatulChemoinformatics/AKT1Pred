@@ -51,6 +51,14 @@ st.sidebar.title("AKT1-Pred")
 st.sidebar.header("Menu")
 CB = st.sidebar.checkbox("Web Application Information")
 
+
+if CB:
+    st.title('Application Description')
+    st.success(
+        " This module of [**AKT1Pred**](https://github.com/RatulChemoinformatics/AKT1Pred) has been built to predict bioactivity and identify potent inhibitors against AKT1 using robust machine learning algorithms."
+    )
+
+
 # sidebar for navigation
 with st.sidebar:
     selected = option_menu('Artificial Intelligence assisted Machine Learning Bioactivity Prediction Models',
