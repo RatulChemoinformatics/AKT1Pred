@@ -10,7 +10,7 @@ from streamlit_option_menu import option_menu
 
 
 # Set page configuration
-st.set_page_config(page_title='QSAR ToolBox', page_icon='🌐', layout="wide")
+st.set_page_config(page_title='AKT1 Pred', page_icon='🌐', layout="wide")
 
 # Create title and subtitle
 html_temp = """
