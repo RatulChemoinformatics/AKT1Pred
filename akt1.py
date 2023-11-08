@@ -25,7 +25,7 @@ bioactivity_first_model = pickle.load(open('akt1_pubchem.pkl', 'rb'))
 bioactivity_second_model = pickle.load(open('akt1_substructure.pkl', 'rb'))
 
 # Define the tabs
-tab1,tab2,tab3,tab4,tab5,tab6,tab7,tab8 = st.tabs(['Main', 'About', 'What is MA0-B?', 'Dataset', 'Model performance', 'Python libraries', 'Citing us', 'Application Developers'])
+tab1,tab2,tab3,tab4,tab5,tab6,tab7,tab8 = st.tabs(['Main', 'About', 'What is AKT1?', 'Dataset', 'Model performance', 'Python libraries', 'Citing us', 'Application Developers'])
 
 with tab1:
     st.title('Application Description')
