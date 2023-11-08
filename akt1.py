@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Nov  8 11:33:56 2023
+
+@author: RATUL BHOWMIK
+"""
+
 import streamlit as st
 import pandas as pd
 from PIL import Image
@@ -7,65 +14,34 @@ import base64
 import pickle
 from streamlit_option_menu import option_menu
 
+# The App
+st.title('💊 Akt1-pred app')
+st.info('Akt1-pred allows users to predict bioactivity of a query molecule against the Akt1 target protein.')
 
 
-# Set page configuration
-st.set_page_config(page_title='AKT1 Pred', page_icon='🌐', layout="wide")
-
-# Create title and subtitle
-html_temp = """
-        <div style="background-color:teal">
-        <h1 style="font-family:arial;color:white;text-align:center;">AKT1-Pred</h1>
-        <h4 style="font-family:arial;color:white;text-align:center;">Artificial Intelligence Based Bioactivity Prediction Web-App</h4>       
-        </div>
-        <br>
-        """
-st.markdown(html_temp, unsafe_allow_html=True)
-
-# Logo image
-image = Image.open('AKT1Pred.png')
-st.image(image, use_column_width=True)
-
-# Page title
-st.markdown("""
-# Application Details
-
-This app allows you to predict the bioactivity of any molecule towards inhibiting AKT1.
-
-**Credits**.
-- App built in `Python` + `Streamlit` by [Ratul Bhowmik, Ajay Manaithiya, Dr. Ahmed A. Elhenawy]
-- Descriptor calculated using [PaDEL-Descriptor](http://www.yapcwsoft.com/dd/padeldescriptor/) [[Read the Paper]](https://doi.org/10.1002/jcc.21707).
----
-""")
 
 # loading the saved models
 bioactivity_first_model = pickle.load(open('akt1_pubchem.pkl', 'rb'))
 bioactivity_second_model = pickle.load(open('akt1_substructure.pkl', 'rb'))
 
+# Define the tabs
+tab1,tab2,tab3,tab4,tab5,tab6,tab7,tab8 = st.tabs(['Main', 'About', 'What is MA0-B?', 'Dataset', 'Model performance', 'Python libraries', 'Citing us', 'Application Developers'])
 
-# For hiding streamlit messages
-st.set_option('deprecation.showPyplotGlobalUse', False)
-st.set_option('deprecation.showfileUploaderEncoding', False)
-
-st.sidebar.title("AKT1-Pred")
-st.sidebar.header("Menu")
-CB = st.sidebar.checkbox("Web Application Information")
-
-
-if CB:
+with tab1:
     st.title('Application Description')
     st.success(
-        " This module of [**AKT1Pred**](https://github.com/RatulChemoinformatics/AKT1Pred) has been built to predict bioactivity and identify potent inhibitors against AKT1 using robust machine learning algorithms."
+        " This module of [**Akt1-pred**](https://github.com/RatulChemoinformatics/AKT1Pred) has been built to predict bioactivity and identify potent inhibitors against Akt1 using robust machine learning algorithms."
     )
 
-
-# sidebar for navigation
+# Define a sidebar for navigation
 with st.sidebar:
-    selected = option_menu('Artificial Intelligence assisted Machine Learning Bioactivity Prediction Models',
-                           ['AKT1 prediction model using pubchemfingerprints',
-                            'AKT1 prediction model using substructurefingerprints'],
-                           icons=['activity', 'activity'],
-                           default_index=0)
+    selected = st.selectbox(
+        'Choose a prediction model',
+        [
+            'AKT1 prediction model using pubchemfingerprints',
+            'AKT1 prediction model using substructurefingerprints',
+        ],
+    )
 
 # AKT1 prediction model using pubchemfingerprints
 if selected == 'AKT1 prediction model using pubchemfingerprints':
@@ -102,7 +78,7 @@ if selected == 'AKT1 prediction model using pubchemfingerprints':
     with st.sidebar.header('1. Upload your CSV data'):
         uploaded_file = st.sidebar.file_uploader("Upload your input file", type=['txt'])
         st.sidebar.markdown("""
-        [Example input file](https://raw.githubusercontent.com/RatulChemoinformatics/AKT1Pred/main/predict_phyto.txt)
+        [Example input file](https://github.com/RatulChemoinformatics/QSAR/blob/main/predict.txt)
         """)
 
     if st.sidebar.button('Predict'):
@@ -200,3 +176,34 @@ elif selected == 'AKT1 prediction model using substructurefingerprints':
             build_model(desc_subset)
         else:
             st.warning('Please upload an input file.')
+            
+            
+            
+            
+with tab2:
+  coverimage = Image.open('AKT1Pred.png')
+  st.image(coverimage)
+with tab3:
+  st.header('What is AKT1?')
+  st.write('This gene encodes one of the three members of the human AKT serine-threonine protein kinase family which are often referred to as protein kinase B alpha, beta, and gamma. These highly similar AKT proteins all have an N-terminal pleckstrin homology domain, a serine/threonine-specific kinase domain and a C-terminal regulatory domain. These proteins are phosphorylated by phosphoinositide 3-kinase (PI3K). AKT/PI3K forms a key component of many signalling pathways that involve the binding of membrane-bound ligands such as receptor tyrosine kinases, G-protein coupled receptors, and integrin-linked kinase. These AKT proteins therefore regulate a wide variety of cellular functions including cell proliferation, survival, metabolism, and angiogenesis in both normal and malignant cells.')
+with tab4:
+  st.header('Dataset')
+  st.write('''
+    In our work, we retrieved a human Akt1 biological dataset from the ChEMBL database. The data was curated and resulted in a non-redundant set of 3393 Akt1 inhibitors, which demostrated a bioactivity value (pIC50) between 10 to 3.3
+    ''')
+with tab5:
+  st.header('Model performance')
+  st.write('We selected a total of 2 different molecular signatures namely pubchem fingerprints and substructure fingerprints to build the web application. The correlation coefficient, RMSE, and MAE values for the pubchem fingerprint model was found to be 0.982, 0.2779, and 0.2165. The correlation coefficient, RMSE, and MAE values for the substructure fingerprint model was found to be 0.9649, 0.3507, and 0.2842.')
+with tab6:
+  st.header('Python libraries')
+  st.markdown('''
+    This app is based on the following Python libraries:
+    - `streamlit`
+    - `pandas`
+    - `rdkit`
+    - `padelpy`
+  ''')
+with tab7:
+  st.markdown('Kuttappan S, Bhowmik R, Gopi Mohan C. Probing the origins of programmed death ligand-1 inhibition by implementing machine learning-assisted sequential virtual screening techniques, ***Molecular Diversity*** (2023) DOI: https://doi.org/10.1007/s11030-023-10697-5.')
+with tab8:
+  st.markdown('Ratul Bhowmik, Ajay Manaithiya, Ranajit Nath, Sameer Sharma. [***Department of Bioinformatics, BioNome Private Limited, Bengaluru, Karnataka, India***] ')
