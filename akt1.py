@@ -189,7 +189,7 @@ with tab3:
 with tab4:
   st.header('Dataset')
   st.write('''
-    In our work, we retrieved a human Akt1 biological dataset from the ChEMBL database. The data was curated and resulted in a non-redundant set of 3393 Akt1 inhibitors, which demostrated a bioactivity value (pIC50) between 10 to 3.3
+    In our work, we retrieved a human Akt1 biological dataset from the ChEMBL database. The data was curated and resulted in a non-redundant set of 3393 Akt1 inhibitors, which demostrated a bioactivity value (pIC50) between 10 to 3.3.
     ''')
 with tab5:
   st.header('Model performance')
