@@ -206,4 +206,4 @@ with tab6:
 with tab7:
   st.markdown('Kuttappan S, Bhowmik R, Gopi Mohan C. Probing the origins of programmed death ligand-1 inhibition by implementing machine learning-assisted sequential virtual screening techniques, ***Molecular Diversity*** (2023) DOI: https://doi.org/10.1007/s11030-023-10697-5.')
 with tab8:
-  st.markdown('Ratul Bhowmik, Ajay Manaithiya, Ranajit Nath, Sameer Sharma. [***Department of Bioinformatics, BioNome Private Limited, Bengaluru, Karnataka, India***] ')
+  st.markdown('Ratul Bhowmik, Ajay Manaithiya, Ashok Aspatwar. [***Faculty of Medicine and Health Technology, Tampere University, Finland***] ')
